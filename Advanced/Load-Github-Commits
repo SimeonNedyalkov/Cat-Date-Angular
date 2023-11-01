@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    GitHub username:
+<input type="text" id="username" value="nakov" /> <br>
+Repo: <input type="text" id="repo" value="nakov.io.cin" />
+<button onclick="loadCommits()">Load Commits</button>
+<ul id="commits"></ul>
+<script>
+function loadCommits() {
+    let url = `https://api.github.com/`
+    let newurl= url + `repos/` + document.getElementById('username').value +'/'+ document.getElementById('repo').value+`/commits`
+    console.log(newurl)
+    fetch(newurl,{
+        method: 'GET'
+    })
+    .then((res)=>{
+        if(res.status == 200){
+            return res.json()
+        }else{
+            throw new Error(res.status)
+        }
+    })
+    .then((data)=>{
+        console.log(data)
+        data.forEach(element => {
+            const listItem = document.createElement('li')
+                listItem.textContent = element.commit.message
+            document.getElementById('commits').appendChild(listItem)
+        });
+    })   
+    
+}
+</script>
+</body>
+</html>
