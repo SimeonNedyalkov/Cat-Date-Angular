@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+section {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: #dad7d7;
+    
+}
+
+header {
+    color: #fff;
+    text-align: center;
+    padding-top: 300px;
+    padding-bottom: 100px;
+    
+}
+header h1{
+    color: white;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+}
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+h1, h2 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #333;
+}
+p {
+    padding-bottom: 1.5rem;
+}
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+img{
+    display: flex;
+    width: 60%;
+    height: 60%;
+}
+.conclusion{
+    display: flex;
+    gap: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+.conclusion .text{
+    display: flex;
+    flex-direction: column;
+}
+.conclusion .text p{
+    padding-bottom: 0px;
+}
+.fullscreen-image{
+    position: relative;
+    height: 55vh;
+    width: 100%;
+    background-image: url('../../assets/about/20_DesignPickle_Zoom_Background-30.jpg'); /* Path to your fullscreen image */
+    background-size: cover;
+    background-position: center;
+}

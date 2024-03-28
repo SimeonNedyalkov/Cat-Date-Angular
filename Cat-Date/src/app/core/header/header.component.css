@@ -111,3 +111,6 @@ body {
         padding-left: 60px;
     }
 }
+.profile{
+    display: flex;
+}

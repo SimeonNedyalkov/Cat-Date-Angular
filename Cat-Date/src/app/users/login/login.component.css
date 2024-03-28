@@ -1,0 +1,96 @@
+*{
+  font-weight: 900;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+h3{
+  padding: 20px;
+}
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+img{
+  width: 100%;
+  height: auto;
+}
+.fullscreen-image {
+  position: relative;
+  height: 120vh;
+  width: 100%;
+  background-image: url('../../../assets/loginAndRegister/what-do-you-call-a-group.of-cats.jpg');
+  background-size: cover;
+  background-position: center;
+  padding-top: 150px;
+  padding-bottom: 10px;
+}
+.login-container {
+  background-color: #333; /* Gray background color */
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  margin-left: auto; /* Center the form */
+  margin-right: auto; /* Center the form */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-container {
+  background-color: white; /* Red background color */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* Style for form elements (optional) */
+.formGroup {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #828558;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+button:hover {
+  background-color: #F8E3AD;
+}
+.form-container input[type="text"]::placeholder,
+.form-container input[type="password"]::placeholder {
+  color: #b3b2b2; 
+  font-style: italic; 
+  font-size: 12px; 
+}
+/* validation */
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
+  transition: opacity 0.3s ease;
+}
+
+.error-message.ng-animating {
+  opacity: 0;
+}

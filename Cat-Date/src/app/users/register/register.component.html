@@ -1,1 +1,66 @@
-<p>register works!</p>
+<div class="fullscreen-image">
+    <div class="register-container">
+        <div class="form-container">
+            <form [formGroup]="registerForm" (ngSubmit)="submitForm()" action="">
+                <h3>Register</h3>
+                <div class="formGroup">
+                    <label for="username">Username: </label>
+                    <input type="text" name="username" placeholder="&#xf007; Type your Username" formControlName="username" style="font-family:Arial, FontAwesome" >
+                </div>
+                <ng-container>
+                <div *ngIf="registerForm.get('username')?.hasError('required') && registerForm.get('username')?.touched" class="error-message">
+                    Username is required.
+                </div>
+                </ng-container>
+                <div class="formGroup">
+                    <label for="email">Email: </label>
+                    <input type="text" name="email" placeholder="&#xf0e0; Type your Email" formControlName="email" style="font-family:Arial, FontAwesome" />
+                </div>
+                
+                <ng-container>
+                <div *ngIf="registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched" class="error-message">
+                    Email is required.
+                </div>
+                <div *ngIf="registerForm.get('email')?.hasError('pattern') && registerForm.get('email')?.touched" class="error-message">
+                    Email must contain @ and a domain.
+                </div>
+                </ng-container>
+                <div class="formGroup">
+                    <label for="phone">Phone: </label>
+                    <input type="text" name="phone" placeholder="&#xf095; Type your Phone" formControlName="phone" style="font-family:Arial, FontAwesome">
+                </div>
+                <ng-container>
+                    <div *ngIf="registerForm.get('phone')?.hasError('required') && registerForm.get('phone')?.touched" class="error-message">
+                        Phone is required.
+                    </div>
+                    </ng-container>
+                <div class="formGroup">
+                    <label for="password">Password: </label>
+                    <input type="text" name="password" placeholder="&#xf023; Type your Password" formControlName="password" style="font-family:Arial, FontAwesome">
+                </div>
+                <ng-container>
+                    <div *ngIf="registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched" class="error-message">
+                        Password is required.
+                    </div>
+                    <div *ngIf="registerForm.get('password')?.hasError('minlength') && registerForm.get('password')?.touched" class="error-message">
+                        Password must be minimum 6 symbols.
+                    </div>
+                    </ng-container>
+                <div class="formGroup">
+                    <label for="rePassword">Repeat your Password: </label>
+                    <input type="text" name="rePassword" placeholder="&#xf023; Repeat your Password" formControlName="rePassword" style="font-family:Arial, FontAwesome">
+                </div>
+                <ng-container>
+                    <div *ngIf="registerForm.get('rePassword')?.hasError('required') && registerForm.get('rePassword')?.touched" class="error-message">
+                        Password is required.
+                    </div>
+                    <div *ngIf="registerForm.errors?.['passwordMismatch'] && (registerForm.get('password')?.touched || registerForm.get('rePassword')?.touched)" class="error-message">
+                        Passwords do not match.
+                    </div>
+                    </ng-container>
+                <button>Register</button>
+            </form>
+        </div>
+        
+        </div>
+</div>

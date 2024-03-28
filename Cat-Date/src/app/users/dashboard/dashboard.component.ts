@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/shared/auth.service';
+import { UserService } from 'src/app/shared/auth.service';
 import { DataService } from 'src/app/shared/data.service';
 import { CatType } from 'src/app/types/cat';
 
@@ -10,11 +10,12 @@ import { CatType } from 'src/app/types/cat';
 })
 export class DashboardComponent implements OnInit{
 
-  catList : CatType[] = []
-
-  constructor(private authService:AuthService,public dataService:DataService){}
+  constructor(private authService:UserService,public dataService:DataService){}
 
   ngOnInit(): void {
+    this.authService.getProfile().subscribe((res)=>{
+      console.log(res)
+    })
     
   }
 }

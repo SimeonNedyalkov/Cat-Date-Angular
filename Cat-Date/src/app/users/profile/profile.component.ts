@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from 'src/app/shared/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class ProfileComponent {
 
+  constructor(private authService:UserService){}
+  ngOnInit(): void {
+    this.authService.getProfile().subscribe((res)=>{
+      console.log(res)
+    })
+    
+  }
 }

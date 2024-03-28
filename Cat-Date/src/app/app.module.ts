@@ -9,10 +9,13 @@ import { ErrorComponent } from './error/error.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { UsersModule } from './users/users.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ModuleModule } from './shared/module.module';
 import { FormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http'
+import { HttpClientModule} from '@angular/common/http'
 import { UserRoutingModule } from './users/users.routing.module';
+import { AboutComponent } from './about/about.component';
+import { SharedModule } from './shared/shared.module';
+import { AuthenticateComponent } from './authenticate/authenticate.component';
+
 
 
 @NgModule({
@@ -21,19 +24,23 @@ import { UserRoutingModule } from './users/users.routing.module';
     HomeComponent,
     ErrorComponent,
     ComingSoonComponent,
+    AboutComponent,
+    AuthenticateComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     CoreModule,
     UsersModule,
     ReactiveFormsModule,
-    ModuleModule,
+    SharedModule,
     FormsModule,
     HttpClientModule,
-    UserRoutingModule
+    UserRoutingModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  
+ }

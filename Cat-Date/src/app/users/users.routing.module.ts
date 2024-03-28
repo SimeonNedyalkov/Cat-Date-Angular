@@ -4,12 +4,13 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthActivate } from '../guards/auth.activate';
 
 const routes: Routes = [
     {path:'login',component:LoginComponent},
     {path:'register',component:RegisterComponent},
-    {path:'profile',component:ProfileComponent},
-    {path:'dashboard',component:DashboardComponent}
+    {path:'profile',component:ProfileComponent,canActivate:[AuthActivate]},
+    {path:'dashboard',component:DashboardComponent,canActivate:[AuthActivate]},
 ];
 
 @NgModule({

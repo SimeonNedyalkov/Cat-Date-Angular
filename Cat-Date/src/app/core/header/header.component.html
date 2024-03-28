@@ -1,6 +1,8 @@
 <nav class="navbar">
     <div class="logo">
-        <img src="../../assets/logos/R (3).png" alt="Logo">
+            <img src="../../assets/logos/R (3).png" alt="Logo">
+
+        
         <div class="extra-info">
             <a routerLink="/home">Cat Date</a>
         </div>
@@ -16,7 +18,15 @@
             </div>
         </li>
         <li><a routerLink="/about">About</a></li>
-        <li><a routerLink="/login">Login</a></li>
-        <li><a routerLink="/register">Register</a></li>
+        <div class="profile" *ngIf="isLoggedIn == false">
+            <li><a routerLink="/login">Login</a></li>
+            <li><a routerLink="/register">Register</a></li>
+        </div>
+        
+        <div class="profile" *ngIf="isLoggedIn">
+                <li><a routerLink="dashboard">Dashboard</a></li>
+                <li><a routerLink="profile">{{userName}}'s Profile</a></li>
+                <li><a routerLink="home" (click)="logout()">Logout</a></li>
+        </div>
     </ul>
 </nav>

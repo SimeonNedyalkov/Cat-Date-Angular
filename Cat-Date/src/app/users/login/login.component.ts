@@ -1,5 +1,7 @@
 import { Component,inject,ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/shared/auth.service';
 import { DataService } from 'src/app/shared/data.service';
 
 @Component({
@@ -8,27 +10,20 @@ import { DataService } from 'src/app/shared/data.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-
-  constructor(private fb:FormBuilder, private catList:DataService){}
-  createCatForm = this.fb.group({
-    firstName:['',[]],
-    eyesColor:['',[]],
-    furColor:['',[]],
-    weight:['',[]],
+  constructor(private fb:FormBuilder, private catList:DataService ,private authService:UserService,private router:Router){}
+    loginForm = this.fb.group({
+      email:['',[Validators.required]],
+      password:['',[Validators.required]],
   })
-  
-  submitForm():void{
-    if(!this.createCatForm){
+  submitForm(){
+    if(this.loginForm.invalid){
       return
     }
-    const form = this.createCatForm
-    console.log(form)
-    this.catList.getAllCats().subscribe((res)=>{
+    const {email,password} = this.loginForm.value;
+    this.authService.login(email!,password!).subscribe((res)=>{
+      this.router.navigate(['/home'])
       console.log(res)
-    },(err)=>{
-      console.log(err.message)
     })
-    
-
   }
+  
 }

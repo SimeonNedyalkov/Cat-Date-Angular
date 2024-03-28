@@ -71,4 +71,97 @@ img{
   }
   
   
+  #pricing{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .round-image {
+    border-radius: 50%; 
+    width: 100px; 
+    height: 100px; 
+}
   
+  .pricing{
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .pricing-column {
+    margin: 0 10px;
+  }
+  .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .pricing-column {
+    margin: 0 5px; 
+  }
+  
+  .card {
+    height: 100%;
+  }
+  
+  .card-body {
+    height: 300px; 
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .card-body p {
+    flex: 1; 
+  }
+  .testimonial {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #333;
+    color: white;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.testimonial-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.feature-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center; 
+}
+
+.logos {
+    display: inline-flex; 
+    align-items: center; 
+}
+
+.logos i {
+    margin-right: 10px; 
+}
+.testimonial p{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

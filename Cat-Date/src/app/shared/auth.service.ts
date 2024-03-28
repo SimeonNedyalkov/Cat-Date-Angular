@@ -1,40 +1,79 @@
-import { Injectable } from '@angular/core';
-// import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Router } from '@angular/router';
+import { Injectable, OnDestroy } from '@angular/core';
+import { UserType } from '../types/user';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, Subscription, tap } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class AuthService {
+export class UserService implements OnDestroy {
+  private user$$ = new BehaviorSubject<UserType | undefined>(undefined);
+  private user$ = this.user$$.asObservable();
 
-  constructor() { }
+  user: UserType | undefined;
+  USER_KEY = '[user]'
 
-  // login(email:string,password:string){
-  //   this.fireauth.signInWithEmailAndPassword(email,password).then(()=>{
-  //     localStorage.setItem('token','true')
-  //     this.router.navigate(['/dashboard'])
-  //   },err=>{
-  //     alert('Something went wrong!')
-  //     this.router.navigate(['/login'])
-  //   })
-  // }
+  userSubscription: Subscription;
 
-  // register(email:string,password:string){
-  //   this.fireauth.createUserWithEmailAndPassword(email,password).then(()=>{
-  //     alert('Registration Successful')
-  //     this.router.navigate(['/login'])
-  //   },err=>{
-  //     alert(err.message)
-  //     this.router.navigate(['/register'])
-  //   })
-  // }
+  get isLogged(): boolean {
+    return !!this.user;
+  }
 
-  // logout(){
-  //   this.fireauth.signOut().then(()=>{
-  //     localStorage.removeItem('token')
-  //     this.router.navigate(['/login'])
-  //   },err=>{
-  //     alert(err.message)
-  //   })
-  // }
+  constructor(private http: HttpClient) {
+    this.userSubscription = this.user$.subscribe((user) => {
+      this.user = user;
+    });
+  }
+
+  login(email: string, password: string) {
+    const accessToken = localStorage.getItem('accessToken');
+    
+    return this.http.post<UserType>(
+      environment.apiUrl + '/users/login',
+      { email, password },).pipe(
+      tap((user) => this.user$$.next(user))
+    );
+  }
+
+  register(username: string,email: string,phone: string,password: string,rePassword: string) {
+    return this.http
+      .post<UserType>(environment.apiUrl+'/users/register', {username,email,phone,password,rePassword,})
+      .pipe(
+        tap((response: any) => {
+          const accessToken = response.accessToken;
+          (localStorage.setItem('accessToken', accessToken));
+        })
+      );
+  }
+
+  logout() {
+    localStorage.removeItem('accessToken')
+    return this.http
+      .post(environment.apiUrl+'/users/logout', {})
+      .pipe(tap(() => this.user$$.next(undefined)));
+  }
+
+  getProfile() {
+    return this.http
+      .get<UserType>(environment.apiUrl+'/users/me')
+      .pipe(tap((user) => this.user$$.next(user)));
+  }
+
+  updateProfile(username: string, email: string, phone?: string) {
+    return this.http
+      .put<UserType>(environment.apiUrl+'/users/me', {
+        username,
+        email,
+        phone,
+      })
+      .pipe(tap((user) => this.user$$.next(user)));
+  }
+
+  ngOnDestroy(): void {
+    this.userSubscription.unsubscribe();
+  }
+  getToken(){
+    return localStorage.getItem('accessToken')
+  }
 }

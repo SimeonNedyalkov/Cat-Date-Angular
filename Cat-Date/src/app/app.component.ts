@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Cat-Date';
+  showLoader: boolean = true;
+
+  constructor() { }
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.showLoader = false;
+    }, 1000); 
+  }
 }
