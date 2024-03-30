@@ -36,7 +36,7 @@
                     </ng-container>
                 <div class="formGroup">
                     <label for="password">Password: </label>
-                    <input type="text" name="password" placeholder="&#xf023; Type your Password" formControlName="password" style="font-family:Arial, FontAwesome">
+                    <input type="password" name="password" placeholder="&#xf023; Type your Password" formControlName="password" style="font-family:Arial, FontAwesome">
                 </div>
                 <ng-container>
                     <div *ngIf="registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched" class="error-message">
@@ -48,7 +48,7 @@
                     </ng-container>
                 <div class="formGroup">
                     <label for="rePassword">Repeat your Password: </label>
-                    <input type="text" name="rePassword" placeholder="&#xf023; Repeat your Password" formControlName="rePassword" style="font-family:Arial, FontAwesome">
+                    <input type="password" name="rePassword" placeholder="&#xf023; Repeat your Password" formControlName="rePassword" style="font-family:Arial, FontAwesome">
                 </div>
                 <ng-container>
                     <div *ngIf="registerForm.get('rePassword')?.hasError('required') && registerForm.get('rePassword')?.touched" class="error-message">

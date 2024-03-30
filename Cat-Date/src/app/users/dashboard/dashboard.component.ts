@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/shared/auth.service';
 import { DataService } from 'src/app/shared/data.service';
-import { CatType } from 'src/app/types/cat';
 
 @Component({
   selector: 'app-dashboard',

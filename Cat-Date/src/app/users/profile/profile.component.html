@@ -1,1 +1,86 @@
-<p>profile works!</p>
+<!-- Just a profile check -->
+<div *ngIf="showEditMode == false" class="fullscreen-image">
+  <div class="profile-container">
+    <h2>Profile Information</h2>
+    <div class="profile-info">
+      <div class="info-item">
+        <label>Name: </label>
+        <span>{{username1}}</span>
+      </div>
+      <div class="info-item">
+        <label>Email: </label>
+        <span>{{email1}}</span>
+      </div>
+      <div class="info-item">
+        <label>Phone: </label>
+        <span>{{phone1}}</span>
+      </div>
+    </div>
+    <button (click)="onToggle()">Add a Cat</button>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- edit mode -->
+<div *ngIf="isCatAdded() == false">
+<div *ngIf="showEditMode == true" class="fullscreen-image">
+  <div class="profile-container">
+    <h2>Add a Cat</h2>
+    <form [formGroup]="profileForm" (ngSubmit)="addACat()">
+      <div class="profile-info">
+        <div class="info-item">
+          <label>Name: </label>
+          <input type="text" formControlName="name" formControlName='name'>
+        </div>
+        <div *ngIf="profileForm.get('name')?.hasError('required') && profileForm.get('name')?.touched" class="error-message">
+          Name is required.
+        </div>
+        <div class="info-item">
+          <label>Eyes Color: </label>
+          <input type="eyesColor" formControlName='eyesColor'>
+        </div>
+        <div *ngIf="profileForm.get('eyesColor')?.hasError('required') && profileForm.get('eyesColor')?.touched" class="error-message">
+          Eyes Color is required.
+        </div>
+        <div class="info-item">
+          <label>Fur Color: </label>
+          <input type="furColor" formControlName='furColor'>
+        </div>
+        <div *ngIf="profileForm.get('furColor')?.hasError('required') && profileForm.get('furColor')?.touched" class="error-message">
+          Fur Color is required.
+        </div>
+        <div class="info-item">
+          <label>Weight: </label>
+          <input type="weight" formControlName='weight'>
+        </div>
+        <div *ngIf="profileForm.get('weight')?.hasError('required') && profileForm.get('weight')?.touched" class="error-message">
+          Weight is required.
+        </div>
+        <div class="info-item">
+          <div class="input-group mb-3">
+            <input type="file" class="form-control" formControlName="img" id="inputGroupFile02">
+          </div>
+        </div>
+        <div *ngIf="profileForm.get('img')?.hasError('required') && profileForm.get('img')?.touched" class="error-message">
+          Image is required.
+        </div>
+      </div>
+      <div class="buttons">
+        <button (click)="onToggle()">Return</button>
+        <button type="submit">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+<div *ngIf="isCatAdded() == true"class="fullscreen-image">
+  <div class="profile-container">
+    <h2>You have already added a cat!!!</h2>
+    <p>Do you wish to delete it?</p>
+    <button (click)="deleteYourCat(catId)">Delete Cat</button>
+  </div>
+</div>

@@ -2,29 +2,50 @@ import { Injectable, OnInit } from '@angular/core';
 // import {Firestore, collectionData} from '@angular/fire/firestore'
 import {CatType } from '../types/cat';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 // import { collection } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService implements OnInit{
+  isCatAdded:boolean=false
   url = 'http://localhost:3030/data/cats'
   headers = new HttpHeaders({
-    'Content-Type': 'application/json', // Set the content type to JSON
+    'Content-Type': 'application/json',
   });
   constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
     
   }
-  getAllCats():Observable<CatType>{
-    return this.http.get<CatType>(this.url)
+  // Read
+  getAllCats(): Observable<CatType[]> {
+    return this.http.get<CatType[]>(this.url);
   }
-  createACat(catData:CatType):Observable<CatType>{
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json', // Set the content type to JSON
-    });
-    return this.http.post<CatType>(this.url,catData,{headers})
+  getYourCat(id:string): Observable<CatType>{
+    return this.http.get<CatType>(this.url);
   }
+  // Create
+  createACat(name: string, img: string, eyesColor: string,furColor:string,weight:string) {{
+    return this.http.post<CatType>(this.url,{
+      name,
+      img,
+      eyesColor,
+      furColor,
+      weight
+    }).pipe(
+      tap((response: any) => {
+        const id = response._id;
+        (localStorage.setItem('catId', id));
+      })
+    );
+  }
+  }
+  // Delete
+  deleteACat(id:string){
+  return this.http.delete<string>(this.url+`/${id}`)
+}
+  // Update
+
 }

@@ -1,0 +1,24 @@
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.app {
+  height: 100vh;
+  width: 100%;
+  background-color: gray;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+.container {
+  display: flex;
+}
+
+.left {
+  flex: 0 0 20%;
+}
+
+.right {
+  flex: 1;
+}

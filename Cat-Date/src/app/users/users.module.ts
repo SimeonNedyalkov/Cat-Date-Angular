@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptor.interceptor';
+import { CDItemsModule } from '../c-d-items/c-d-items.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AuthInterceptor } from './interceptor.interceptor';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    CDItemsModule,
   ],
   exports:[
     LoginComponent,

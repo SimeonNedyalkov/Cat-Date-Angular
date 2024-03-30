@@ -11,7 +11,6 @@ export class HeaderComponent {
   constructor(private userService:UserService,private router:Router){}
 
   get isLoggedIn():boolean{
-    console.log(this.userService.isLogged)
     return this.userService.isLogged
   }
   get userName():string{
