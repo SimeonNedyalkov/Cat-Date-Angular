@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CatDateAppComponent } from './cat-date-app/cat-date-app.component';
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
-import { CatCardsComponent } from './cat-cards/cat-cards.component';
 import { CDInterfaceComponent } from './c-d-interface/c-d-interface.component';
 import { SwipeableDirective } from './swipable-directive.directive';
+import { CatCardsComponent } from './cat-cards/cat-cards.component';
+import { CatMatchDirectiveDirective } from './cat-match-directive.directive';
 
 
 
@@ -14,7 +15,8 @@ import { SwipeableDirective } from './swipable-directive.directive';
     ProfileInfoComponent,
     CatCardsComponent,
     CDInterfaceComponent,
-    SwipeableDirective
+    SwipeableDirective,
+    CatMatchDirectiveDirective
   ],
   imports: [
     CommonModule,

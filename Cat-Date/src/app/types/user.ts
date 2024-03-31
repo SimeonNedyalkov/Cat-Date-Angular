@@ -3,4 +3,7 @@ export interface UserType{
     email:string,
     phone:string,
     password:string,
+    _createdOn:number,
+    _id:string,
+    accessToken:string,
 }

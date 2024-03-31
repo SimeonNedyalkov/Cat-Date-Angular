@@ -3,6 +3,7 @@ import { UserType } from '../types/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Subscription, tap } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
+import { CatType } from '../types/cat';
 
 @Injectable({
   providedIn: 'root',
@@ -27,22 +28,20 @@ export class UserService implements OnDestroy {
   }
 
   login(email: string, password: string) {
-    const accessToken = localStorage.getItem('accessToken');
-    
     return this.http.post<UserType>(
       environment.apiUrl + '/users/login',
-      { email, password },).pipe(
-      tap((user) => this.user$$.next(user))
-    );
+      { email, password }).pipe(
+        tap((user) => this.setUser(user))
+      );
   }
 
-  register(username: string,email: string,phone: string,password: string,rePassword: string) {
+  register(username: string, email: string, phone: string, password: string, rePassword: string) {
     return this.http
-      .post<UserType>(environment.apiUrl+'/users/register', {username,email,phone,password,rePassword,})
+      .post<UserType>(environment.apiUrl + '/users/register', { username, email, phone, password, rePassword })
       .pipe(
         tap((response: any) => {
           const accessToken = response.accessToken;
-          (localStorage.setItem('accessToken', accessToken));
+          localStorage.setItem('accessToken', accessToken);
         })
       );
   }
@@ -50,30 +49,32 @@ export class UserService implements OnDestroy {
   logout() {
     localStorage.removeItem('accessToken')
     return this.http
-      .post(environment.apiUrl+'/users/logout', {})
+      .post(environment.apiUrl + '/users/logout', {})
       .pipe(tap(() => this.user$$.next(undefined)));
   }
 
   getProfile() {
     return this.http
-      .get<UserType>(environment.apiUrl+'/users/me')
+      .get<UserType>(environment.apiUrl + '/users/me')
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
-  updateProfile(username: string, email: string, phone?: string) {
+  updateProfile(cat: CatType) {
     return this.http
-      .put<UserType>(environment.apiUrl+'/users/me', {
-        username,
-        email,
-        phone,
-      })
+      .put<UserType>(environment.apiUrl + '/users/me', { cat })
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
   ngOnDestroy(): void {
     this.userSubscription.unsubscribe();
   }
-  getToken(){
-    return localStorage.getItem('accessToken')
+
+  private setUser(user: UserType) {
+    localStorage.setItem('accessToken', user.accessToken);
+    this.user$$.next(user);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('accessToken');
   }
 }

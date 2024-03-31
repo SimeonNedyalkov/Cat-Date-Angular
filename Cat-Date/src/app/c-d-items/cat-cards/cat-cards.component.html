@@ -1,4 +1,10 @@
 <!-- if more cats -->
+<div *ngIf="catsMatched==true">
+    <div class="cats-matched-message" appCatMatchDirective>
+      <p>Cats are matched!</p>
+    </div>
+</div>
+
 <div *ngIf="allCatsShown == false">
   <div class="card-container" >
     <div class="card" *ngIf="currentCat">
@@ -11,9 +17,9 @@
         <p>Fur color: {{ currentCat.furColor }}</p>
         <p>Weight: {{currentCat.weight}}</p>
       </div>
-      <div class="buttons">
-        <button (click)="showNextCat()" class="round-button thumbs-up" ><i class="fas fa-thumbs-up" ></i></button>
-        <button (click)="showNextCat()" class="round-button thumbs-down"><i class="fas fa-thumbs-down"></i></button>
+      <div class="buttons" *ngIf="doYouHaveACat == true">
+        <button (click)="like(getCatId())" class="round-button thumbs-up" ><i class="fas fa-thumbs-up" ></i></button>
+        <button (click)="dislike()" class="round-button thumbs-down"><i class="fas fa-thumbs-down"></i></button>
       </div>
     </div>
   </div>

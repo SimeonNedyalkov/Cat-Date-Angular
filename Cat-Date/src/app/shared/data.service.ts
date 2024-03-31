@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 // import {Firestore, collectionData} from '@angular/fire/firestore'
 import {CatType } from '../types/cat';
-import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 // import { collection } from 'firebase/firestore';
 
@@ -24,27 +24,31 @@ export class DataService implements OnInit{
     return this.http.get<CatType[]>(this.url);
   }
   getYourCat(id:string): Observable<CatType>{
-    return this.http.get<CatType>(this.url);
+    return this.http.get<CatType>(this.url+`/${id}`);
   }
+  
   // Create
-  createACat(name: string, img: string, eyesColor: string,furColor:string,weight:string) {{
+  createACat(name: string, img: string, eyesColor: string,furColor:string,weight:string,liked:string[]) {{
     return this.http.post<CatType>(this.url,{
       name,
       img,
       eyesColor,
       furColor,
-      weight
+      weight,
+      liked,
     }).pipe(
       tap((response: any) => {
         const id = response._id;
-        (localStorage.setItem('catId', id));
       })
     );
   }
   }
   // Delete
   deleteACat(id:string){
-  return this.http.delete<string>(this.url+`/${id}`)
+  return this.http
+  .delete<string>(this.url+`/${id}`)
+  .pipe(tap((response:any)=>{
+  }))
 }
   // Update
 

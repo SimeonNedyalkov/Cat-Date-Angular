@@ -1,33 +1,5 @@
-<!-- Just a profile check -->
-<div *ngIf="showEditMode == false" class="fullscreen-image">
-  <div class="profile-container">
-    <h2>Profile Information</h2>
-    <div class="profile-info">
-      <div class="info-item">
-        <label>Name: </label>
-        <span>{{username1}}</span>
-      </div>
-      <div class="info-item">
-        <label>Email: </label>
-        <span>{{email1}}</span>
-      </div>
-      <div class="info-item">
-        <label>Phone: </label>
-        <span>{{phone1}}</span>
-      </div>
-    </div>
-    <button (click)="onToggle()">Add a Cat</button>
-  </div>
-</div>
-
-
-
-
-
-
 <!-- edit mode -->
-<div *ngIf="isCatAdded() == false">
-<div *ngIf="showEditMode == true" class="fullscreen-image">
+<div *ngIf="!this.dataService.isCatAdded" class="fullscreen-image">
   <div class="profile-container">
     <h2>Add a Cat</h2>
     <form [formGroup]="profileForm" (ngSubmit)="addACat()">
@@ -70,17 +42,17 @@
         </div>
       </div>
       <div class="buttons">
-        <button (click)="onToggle()">Return</button>
         <button type="submit">Save</button>
       </div>
     </form>
   </div>
 </div>
-</div>
-<div *ngIf="isCatAdded() == true"class="fullscreen-image">
+
+<!-- cat already added mode -->
+<div *ngIf="this.dataService.isCatAdded"class="fullscreen-image">
   <div class="profile-container">
     <h2>You have already added a cat!!!</h2>
-    <p>Do you wish to delete it?</p>
-    <button (click)="deleteYourCat(catId)">Delete Cat</button>
+    <p class="DoYouWish">Do you wish to delete it?</p>
+    <button (click)="deleteYourCat(myCat._id)">Delete Cat</button>
   </div>
 </div>

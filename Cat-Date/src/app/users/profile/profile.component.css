@@ -49,16 +49,6 @@ label {
   justify-content: space-around; /* Spread items evenly */
 }
 
-/* .info-item {
-  margin-bottom: 10px;
-  
-  display: flex;
-  align-items: center;
-}
-
-label {
-  font-weight: bold;
-} */
 
 button {
   background-color: #007bff;
@@ -126,4 +116,8 @@ label {
 
 .buttons button {
   width: 120px; /* Set a fixed width for buttons */
+}
+.DoYouWish{
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

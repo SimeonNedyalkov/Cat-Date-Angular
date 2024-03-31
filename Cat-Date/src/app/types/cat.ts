@@ -5,7 +5,9 @@ export interface CatType{
     eyesColor:string,
     furColor:string,
     weight:string,
-    _createdOn:string
+    liked:string[],
+    _createdOn:string,
+    _id:string
 }
 export interface CatForCreationType{
     name:string,
@@ -13,4 +15,11 @@ export interface CatForCreationType{
     eyesColor:string,
     furColor:string,
     weight:string,
+}
+export interface Likes{
+    _ownerId: string,
+    likerId: string,
+    likedId: string,
+    _createdOn: number,
+    _id: string,
 }
