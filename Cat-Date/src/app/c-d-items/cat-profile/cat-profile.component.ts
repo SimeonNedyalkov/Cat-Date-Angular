@@ -24,6 +24,8 @@ export class CatProfileComponent {
   myCat : any
   myCatMatches :string[]=[]
   myCatSwipeIndex : number = 0
+  timeTillMatches:number=0
+  
   constructor(private fb: FormBuilder, public dataService: DataService,private http:HttpClient,private authService:UserService,private router:Router) {}
 
   catProfileForm = this.fb.group({
@@ -36,14 +38,15 @@ export class CatProfileComponent {
 
   ngOnInit(): void {
     this.getMyCat().subscribe(res=>{
-      this.name = res.name
-      this.eyesColor = res.eyesColor
-      this.furColor = res.furColor
-      this.weight = res.weight
-      this.img = res.img
-      this.myCatId = res._id
-      this.myCatMatches = res.matches
-      this.myCatSwipeIndex = res.catSwipeIndex
+      this.name = res.name,
+      this.eyesColor = res.eyesColor,
+      this.furColor = res.furColor,
+      this.weight = res.weight,
+      this.img = res.img,
+      this.myCatId = res._id,
+      this.myCatMatches = res.matches,
+      this.myCatSwipeIndex = res.catSwipeIndex,
+      this.timeTillMatches = res.timeTillMatches
     },err=>{
       console.log('You dont have a cat',err)
     })
@@ -66,7 +69,7 @@ export class CatProfileComponent {
     let { name, img, eyesColor, furColor, weight } = this.catProfileForm.value;
     img = img?.split('\\').pop() ?? null;
     img = '/assets/cat-images/' + img;
-    this.dataService.updateYourCat(this.myCatId,name!, img!, eyesColor!, furColor!, weight!,this.myCatMatches,this.myCatSwipeIndex)
+    this.dataService.updateYourCat(this.myCatId,name!, img!, eyesColor!, furColor!, weight!,this.myCatMatches,this.myCatSwipeIndex,this.timeTillMatches)
       .subscribe((res) => {
         this.cat = res
         this.router.navigate(['/dashboard'])

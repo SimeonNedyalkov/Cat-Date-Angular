@@ -11,7 +11,6 @@ export class CatServiceService {
   matches: Likes[] = [];
   newMatchId : string = ''
   isMatchFound:boolean = false
-  swipeCooldown: number = 90 * 60; 
   allCatsShown: boolean = false;
   currentCat:CatType|undefined
   
@@ -41,6 +40,18 @@ export class CatServiceService {
       updatedCat.catSwipeIndex = newSwipeIndex;
       this.http.put(environment.apiUrl+'/data/cats/' + catId, updatedCat).subscribe(() => {
         console.log('Cat swipe index updated successfully');
+      });
+    });
+  }
+  // Update timer
+  updateTime(catId: string, currentTime: number) {
+    this.http.get<CatType>(environment.apiUrl+'/data/cats/' + catId).subscribe((cat: CatType) => {
+      const updatedCat: CatType = { ...cat }; 
+      
+      // Update the timeTillMatch with the new value
+      updatedCat.timeTillMatches= currentTime;
+      this.http.put(environment.apiUrl+'/data/cats/' + catId, updatedCat).subscribe(() => {
+        console.log('Time till match updated successfully');
       });
     });
   }
@@ -78,26 +89,5 @@ export class CatServiceService {
     this.isMatchFound = false;
   }
 
-  // Countdown
-  startSwipeCooldown() {
-    const timer = setInterval(() => {
-      this.swipeCooldown--;
-      if (this.swipeCooldown <= 0) {
-        clearInterval(timer); 
-      }
-    }, 1000); 
-  }
-
-  // Helper function to format seconds into HH:MM:SS
-  formatTime(seconds: number): string {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const remainingSeconds = seconds % 60;
-    return `${this.padZero(hours)}:${this.padZero(minutes)}:${this.padZero(remainingSeconds)}`;
-  }
-
-  // Helper function to pad single digits with leading zero
-  padZero(num: number): string {
-    return num < 10 ? `0${num}` : `${num}`;
-  }
+  
 }

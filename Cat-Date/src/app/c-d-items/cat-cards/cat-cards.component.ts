@@ -19,7 +19,7 @@ export class CatCardsComponent implements OnInit {
   currentCatIndex: number = 0;
   currentCat: CatType | undefined;
   hasCooldownStarted:boolean = false
-  
+  swipeCooldown: number = 90 * 60; 
 
   constructor(private catService: DataService,public catLikeService:CatServiceService,private authService:UserService,private router:Router) {}
 
@@ -31,6 +31,7 @@ export class CatCardsComponent implements OnInit {
         this.myCat=res
         this.doYouHaveACat = true
         this.currentCatIndex = this.myCat.catSwipeIndex
+        this.swipeCooldown = this.myCat.timeTillMatches
       }
       else{
         this.doYouHaveACat = false
@@ -45,6 +46,9 @@ export class CatCardsComponent implements OnInit {
       this.catLikeService.currentCat = this.cats[this.currentCatIndex];
       if(this.currentCat){
         this.catLikeService.allCatsShown=false
+      }else{
+        this.catLikeService.allCatsShown=true
+        this.resumeSwipeCooldown(this.myCat._id)
       }
     })
   }
@@ -60,7 +64,7 @@ export class CatCardsComponent implements OnInit {
     } else {
       this.catLikeService.allCatsShown = true; 
       if(this.hasCooldownStarted== false){
-        this.catLikeService.startSwipeCooldown()
+        this.startSwipeCooldown(this.myCat._id)
         this.hasCooldownStarted = true
       }
     }
@@ -92,12 +96,45 @@ export class CatCardsComponent implements OnInit {
       })
     );
   }
-  // returnToSwipes(){
-  //   this.catLikeService.resetMatchState()
-  //   this.showNextCat()
-  // }
+  
   resetCurrentCatIndex() {
     this.currentCatIndex = 0;
   }
+  // Countdown
+  startSwipeCooldown(catId: string) {
+    const timer = setInterval(() => {
+      this.swipeCooldown--;
+      if (this.swipeCooldown <= 0) {
+        clearInterval(timer);
+      }
+      this.catLikeService.updateTime(catId,this.swipeCooldown)
+    }, 1000); 
+  
+  }
 
+// Function to resume timer from localStorage
+resumeSwipeCooldown(catId: string) {
+  debugger
+const swipeCooldown = this.myCat.timeTillMatches
+if (swipeCooldown) {
+  this.swipeCooldown = swipeCooldown
+  if (this.swipeCooldown > 0) {
+    // If swipeCooldown is greater than zero, resume timer
+    this.startSwipeCooldown(catId);
+  }
+}
+}
+
+  // Helper function to format seconds into HH:MM:SS
+  formatTime(seconds: number): string {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+    return `${this.padZero(hours)}:${this.padZero(minutes)}:${this.padZero(remainingSeconds)}`;
+  }
+
+  // Helper function to pad single digits with leading zero
+  padZero(num: number): string {
+    return num < 10 ? `0${num}` : `${num}`;
+  }
 }

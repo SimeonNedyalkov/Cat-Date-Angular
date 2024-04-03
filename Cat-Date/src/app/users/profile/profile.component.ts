@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
   myCat : any
   doYouHaveACat:boolean = false
   catSwipeIndex : number = 0
+  timeTillMatches:number = 90 * 60
   constructor(private authService: UserService, private fb: FormBuilder, public dataService: DataService,private http:HttpClient) {}
 
   profileForm = this.fb.group({
@@ -58,7 +59,7 @@ export class ProfileComponent implements OnInit {
   let { name, img, eyesColor, furColor, weight } = this.profileForm.value;
   img = img?.split('\\').pop() ?? null;
   img = '/assets/cat-images/' + img;
-  this.dataService.createACat(name!, img!, eyesColor!, furColor!, weight!,this.matches,this.catSwipeIndex)
+  this.dataService.createACat(name!, img!, eyesColor!, furColor!, weight!,this.matches,this.catSwipeIndex,this.timeTillMatches)
     .subscribe((res) => {
       this.cat = res
       this.dataService.isCatAdded = !this.dataService.isCatAdded;

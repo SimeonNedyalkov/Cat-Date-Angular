@@ -33,12 +33,12 @@
 <!-- if all cats are swiped -->
 <div *ngIf="catLikeService.allCatsShown == true">
   <div class="countdown-container">
-    <ng-container *ngIf="catLikeService.swipeCooldown > 0; else cooldownFinished">
+    <ng-container *ngIf="swipeCooldown > 0; else cooldownFinished">
       <div class="runOut">
         <h3>Sorry, but you have ran out of Swipes!</h3>
       </div>
       <div class="countdown-message">
-        You can continue with your swipes after <span class="countdown-timer">{{ catLikeService.formatTime(catLikeService.swipeCooldown) }}</span>.
+        You can continue with your swipes after <span class="countdown-timer">{{ formatTime(swipeCooldown) }}</span>.
       </div>
     </ng-container>
     <ng-template #cooldownFinished>

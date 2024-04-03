@@ -41,7 +41,7 @@ export class DataService {
   }
   
   // Create
-  createACat(name: string, img: string, eyesColor: string,furColor:string,weight:string,matches:string[],catSwipeIndex:number) {{
+  createACat(name: string, img: string, eyesColor: string,furColor:string,weight:string,matches:string[],catSwipeIndex:number,timeTillMatches:number) {{
     return this.http.post<CatType>(this.url,{
       name,
       img,
@@ -49,7 +49,8 @@ export class DataService {
       furColor,
       weight,
       matches,
-      catSwipeIndex
+      catSwipeIndex,
+      timeTillMatches
     }).pipe(
       tap((response: any) => {
         const id = response._id;
@@ -66,7 +67,7 @@ export class DataService {
 }
   // Update
 
-  updateYourCat(id:string, name:string, img:string, eyesColor:string, furColor:string, weight:string,matches:string[],catSwipeIndex:number){
+  updateYourCat(id:string, name:string, img:string, eyesColor:string, furColor:string, weight:string,matches:string[],catSwipeIndex:number,timeTillMatches:number){
     return this.http.put<CatType>(this.url+`/${id}`,{
       name,
       img,
@@ -74,7 +75,8 @@ export class DataService {
       furColor,
       weight,
       matches,
-      catSwipeIndex
+      catSwipeIndex,
+      timeTillMatches
     })
   }
 }

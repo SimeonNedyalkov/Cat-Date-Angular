@@ -8,7 +8,8 @@ export interface CatType{
     matches:string[],
     _createdOn:string,
     _id:string
-    catSwipeIndex:number
+    catSwipeIndex:number,
+    timeTillMatches:number,
 }
 export interface CatForCreationType{
     name:string,

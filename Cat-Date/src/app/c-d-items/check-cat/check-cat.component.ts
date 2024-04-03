@@ -8,7 +8,7 @@ import { DataService } from 'src/app/shared/data.service';
   styleUrls: ['./check-cat.component.css']
 })
 export class CheckCatComponent implements OnInit{
-  constructor(private dataService:DataService,public catLikeService:CatServiceService){}
+  constructor(public catLikeService:CatServiceService){}
     ngOnInit(): void {
       
     } 
