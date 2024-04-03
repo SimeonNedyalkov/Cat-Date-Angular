@@ -33,3 +33,11 @@ It is a tinder-like site that has a home view, about/the company/ view,Dating Ti
 ## Private part
 
 When you authenticate as a user login and register disapear and you have a view for the dashboard/the app itself/ and profile view - in which you can add or delete your cat in this dashboard you can see your cat if you have added one and you can like cats. If there is a match it is added to the cat's matches
+
+## About creating a cat
+
+If you want to personalise your cat you should put a picture in assets and then upload it 
+
+## Using the softuni-practise-server
+
+you should node server.js it first before running the app
