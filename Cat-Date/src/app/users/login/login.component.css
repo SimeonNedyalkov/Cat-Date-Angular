@@ -30,17 +30,17 @@ img{
   padding-bottom: 10px;
 }
 .login-container {
-  background-color: #333; /* Gray background color */
+  background-color: #333; 
   padding: 20px;
   border-radius: 8px;
   width: 300px;
-  margin-left: auto; /* Center the form */
-  margin-right: auto; /* Center the form */
+  margin-left: auto; 
+  margin-right: auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .form-container {
-  background-color: white; /* Red background color */
+  background-color: white; 
   padding: 20px;
   border-radius: 8px;
 }

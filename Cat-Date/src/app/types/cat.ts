@@ -5,9 +5,10 @@ export interface CatType{
     eyesColor:string,
     furColor:string,
     weight:string,
-    liked:string[],
+    matches:string[],
     _createdOn:string,
     _id:string
+    catSwipeIndex:number
 }
 export interface CatForCreationType{
     name:string,

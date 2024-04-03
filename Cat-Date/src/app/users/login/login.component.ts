@@ -10,7 +10,7 @@ import { DataService } from 'src/app/shared/data.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(private fb:FormBuilder, private catList:DataService ,private authService:UserService,private router:Router){}
+  constructor(private fb:FormBuilder ,private authService:UserService,private router:Router){}
     loginForm = this.fb.group({
       email:['',[Validators.required]],
       password:['',[Validators.required]],
@@ -22,7 +22,6 @@ export class LoginComponent {
     const {email,password} = this.loginForm.value;
     this.authService.login(email!,password!).subscribe((res)=>{
       this.router.navigate(['/home'])
-      console.log(res)
     })
   }
   

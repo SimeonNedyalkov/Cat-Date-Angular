@@ -1,11 +1,16 @@
 <!-- if more cats -->
-<div *ngIf="catsMatched==true">
-    <div class="cats-matched-message" appCatMatchDirective>
-      <p>Cats are matched!</p>
+<div *ngIf="catLikeService.isMatchFound == true">
+    <div appAddClass>
+      <p>Its a Match!</p>
+      <img [src]="currentCat?.img" class="cat-image" alt="Cat Image" >
+      Name: {{ currentCat?.name }}
+      <a class="checkCat" routerLink="/check-match" (click)="showNextCat()">Check Your Match</a>
     </div>
+    
 </div>
 
-<div *ngIf="allCatsShown == false">
+<div *ngIf="catLikeService.isMatchFound == false">
+<div *ngIf="catLikeService.allCatsShown == false">
   <div class="card-container" >
     <div class="card" *ngIf="currentCat">
       <div class="card-header">
@@ -26,14 +31,14 @@
   
 </div>
 <!-- if all cats are swiped -->
-<div *ngIf="allCatsShown == true">
+<div *ngIf="catLikeService.allCatsShown == true">
   <div class="countdown-container">
-    <ng-container *ngIf="swipeCooldown > 0; else cooldownFinished">
+    <ng-container *ngIf="catLikeService.swipeCooldown > 0; else cooldownFinished">
       <div class="runOut">
         <h3>Sorry, but you have ran out of Swipes!</h3>
       </div>
       <div class="countdown-message">
-        You can continue with your swipes after <span class="countdown-timer">{{ formatTime(swipeCooldown) }}</span>.
+        You can continue with your swipes after <span class="countdown-timer">{{ catLikeService.formatTime(catLikeService.swipeCooldown) }}</span>.
       </div>
     </ng-container>
     <ng-template #cooldownFinished>
@@ -42,4 +47,5 @@
       </div>
     </ng-template>
   </div>
+</div>
 </div>

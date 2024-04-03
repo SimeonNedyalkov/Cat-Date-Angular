@@ -1,0 +1,48 @@
+<div class="fullscreen-image">
+    <div class="profile-container">
+      <h2>Update your Cat</h2>
+      <form [formGroup]="catProfileForm" (ngSubmit)="updateYourCat()">
+        <div class="profile-info">
+          <div class="info-item">
+            <label>Name: </label>
+            <input type="text" formControlName="name" formControlName='name'>
+          </div>
+          <div *ngIf="catProfileForm.get('name')?.hasError('required') && catProfileForm.get('name')?.touched" class="error-message">
+            Name is required.
+          </div>
+          <div class="info-item">
+            <label>Eyes Color: </label>
+            <input type="eyesColor" formControlName='eyesColor'>
+          </div>
+          <div *ngIf="catProfileForm.get('eyesColor')?.hasError('required') && catProfileForm.get('eyesColor')?.touched" class="error-message">
+            Eyes Color is required.
+          </div>
+          <div class="info-item">
+            <label>Fur Color: </label>
+            <input type="furColor" formControlName='furColor'>
+          </div>
+          <div *ngIf="catProfileForm.get('furColor')?.hasError('required') && catProfileForm.get('furColor')?.touched" class="error-message">
+            Fur Color is required.
+          </div>
+          <div class="info-item">
+            <label>Weight: </label>
+            <input type="weight" formControlName='weight'>
+          </div>
+          <div *ngIf="catProfileForm.get('weight')?.hasError('required') && catProfileForm.get('weight')?.touched" class="error-message">
+            Weight is required.
+          </div>
+          <div class="info-item">
+            <div class="input-group mb-3">
+              <input type="file" class="form-control" formControlName="img" id="inputGroupFile02">
+            </div>
+          </div>
+          <div *ngIf="catProfileForm.get('img')?.hasError('required') && catProfileForm.get('img')?.touched" class="error-message">
+            Image is required.
+          </div>
+        </div>
+        <div class="buttons">
+          <button type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>

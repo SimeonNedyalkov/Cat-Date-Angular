@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CatType, Likes } from '../types/cat';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
@@ -8,7 +8,13 @@ import { environment } from 'src/environments/environment.development';
   providedIn: 'root'
 })
 export class CatServiceService {
-  private catLike$$ = new BehaviorSubject<Likes | undefined>(undefined);
+  matches: Likes[] = [];
+  newMatchId : string = ''
+  isMatchFound:boolean = false
+  swipeCooldown: number = 90 * 60; 
+  allCatsShown: boolean = false;
+  currentCat:CatType|undefined
+  
   constructor(private http: HttpClient) { }
 
   // Create Like
@@ -17,44 +23,81 @@ export class CatServiceService {
   }
 
   // update likes
-
-  updateLiked(catId: string, likedId: string) {
+  updateMatches(catId: string, likedId: string) {
     this.http.get<CatType>(environment.apiUrl+'/data/cats/' + catId).subscribe((cat: CatType) => {
-      // Get the cat data
       const updatedCat = cat;
-      
-      // Push the likedId to the liked array
-      updatedCat.liked.push(likedId);
-      // Update the cat data in the database
+      updatedCat.matches.push(likedId);
       this.http.put(environment.apiUrl+'/data/cats/' + catId, updatedCat).subscribe(() => {
-        // Log success or handle it as needed
         console.log('Liked updated successfully');
       });
     });
   }
-
-  // Check for matches
-  checkForMatch(likerId: string, likedId: string) {
-    this.http.get<any>(environment.apiUrl+'/data/cats/' + likedId).subscribe((likedCat: any) => {
-      // Check if the likerId is in the likedBy array of the liked cat
-      if (likedCat.liked.includes(likerId)) {
-        console.log('It\'s a match!');
-        // You can handle the match here, such as displaying it to the user
-      }
+  // update swipes
+  updateCatSwipes(catId: string, newSwipeIndex: number) {
+    this.http.get<CatType>(environment.apiUrl+'/data/cats/' + catId).subscribe((cat: CatType) => {
+      const updatedCat: CatType = { ...cat }; 
+      
+      // Update the catSwipeIndex with the new value
+      updatedCat.catSwipeIndex = newSwipeIndex;
+      this.http.put(environment.apiUrl+'/data/cats/' + catId, updatedCat).subscribe(() => {
+        console.log('Cat swipe index updated successfully');
+      });
     });
   }
+  
   getLikes(): Observable<Likes[]> {
     return this.http.get<Likes[]>('http://localhost:3030/data/likes');
   }
-  checkIfLiked(cat1Id: string, cat2Id: string): Observable<boolean> {
-    return this.getLikes().pipe(
-      map(likes => this.checkLikesForMatch(likes, cat1Id, cat2Id))
-    );
+
+  // check for match
+  findMatches(cat:CatType) {
+    this.getLikes().subscribe(likes => {
+      const matches: Likes[] = [];
+      let reciprocalMatch:any
+      likes.forEach(like => {
+        if(!cat.matches.includes(like.likedId) && !cat.matches.includes(like.likerId)){
+            reciprocalMatch = likes.find(
+            match => match.likerId === like.likedId && match.likedId === like.likerId);
+        }
+        if (reciprocalMatch) {
+          if(!this.matches.includes(like)){
+            if(cat._id == like.likerId){
+              matches.push(like);
+              this.isMatchFound = true
+              this.newMatchId = like.likedId
+              this.updateMatches(like.likerId,like.likedId)
+            }
+          }
+        }
+      });
+      this.matches = matches;
+    });
   }
-  private checkLikesForMatch(likes: any[], cat1Id: string, cat2Id: string): boolean {
-    return likes.some(like =>
-      (like.likerId === cat1Id && like.likedId === cat2Id) ||
-      (like.likerId === cat2Id && like.likedId === cat1Id)
-    );
+  resetMatchState() {
+    this.newMatchId = '';
+    this.isMatchFound = false;
+  }
+
+  // Countdown
+  startSwipeCooldown() {
+    const timer = setInterval(() => {
+      this.swipeCooldown--;
+      if (this.swipeCooldown <= 0) {
+        clearInterval(timer); 
+      }
+    }, 1000); 
+  }
+
+  // Helper function to format seconds into HH:MM:SS
+  formatTime(seconds: number): string {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+    return `${this.padZero(hours)}:${this.padZero(minutes)}:${this.padZero(remainingSeconds)}`;
+  }
+
+  // Helper function to pad single digits with leading zero
+  padZero(num: number): string {
+    return num < 10 ? `0${num}` : `${num}`;
   }
 }

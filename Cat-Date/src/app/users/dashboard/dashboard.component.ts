@@ -13,8 +13,7 @@ export class DashboardComponent implements OnInit{
 
   ngOnInit(): void {
     this.authService.getProfile().subscribe((res)=>{
-      console.log(res)
-    })
-    
+      console.log('Authorized as:',res)
+    },err=>{console.log(err)})
   }
 }

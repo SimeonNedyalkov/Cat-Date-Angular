@@ -1,0 +1,10 @@
+<div class="wrapper">
+<div class="container">
+    <img [src]="catLikeService.currentCat?.img" class="cat-image" alt="Cat Image">
+    <h1 class="nameOfCat">You have matched with <span id="catName">{{ catLikeService.currentCat?.name }}</span></h1>
+    <h1>Weight: <span id="catWeight">{{catLikeService.currentCat?.weight}}</span> kg</h1>
+    <p>Eyes color: <span id="catEyesColor">{{catLikeService.currentCat?.eyesColor}}</span></p>
+    <p>Fur color: <span id="catFurColor">{{catLikeService.currentCat?.furColor}}</span></p>
+    <a class="routerLink" routerLink="/dashboard" (click)="catLikeService.resetMatchState()">Return to Cat Date</a>
+</div>
+</div>

@@ -13,12 +13,12 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: transparent; /* Transparent background */
-    z-index: 1000; /* Ensure navbar is on top */
+    background-color: transparent; 
+    z-index: 1000; 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px; /* Reduced padding for smaller screens */
+    padding: 10px 20px; 
     filter: brightness(200%);
 }
 
@@ -30,13 +30,13 @@ body {
 }
 
 .logo img {
-    height: 40px; /* Reduced height for smaller screens */
+    height: 40px; 
 }
 
 .extra-info {
     color: #C5B9BC;
-    margin-left: 10px; /* Reduced margin for smaller screens */
-    font-size: 16px; /* Reduced font size for smaller screens */
+    margin-left: 10px; 
+    font-size: 16px; 
 }
 
 .extra-info a {
@@ -51,7 +51,7 @@ body {
     padding: 0;
     padding-right: 60px;
     display: flex;
-    flex-wrap: wrap; /* Allow menu items to wrap on smaller screens */
+    flex-wrap: wrap; 
 }
 
 .menu li {
@@ -63,7 +63,7 @@ body {
 }
 
 .menu li a {
-    color: #C5B9BC; /* Keep the default text color */
+    color: #C5B9BC; 
     text-decoration: none;
 }
 
@@ -82,11 +82,11 @@ body {
     background-color: transparent;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1001; /* Ensure dropdown is above navbar */
+    z-index: 1001; 
 }
 
 .dropdown-content a {
-    color: #C5B9BC !important; /* Set the text color to red for dropdown items */
+    color: #C5B9BC !important; 
     padding: 12px 16px;
     text-decoration: none;
     display: block;

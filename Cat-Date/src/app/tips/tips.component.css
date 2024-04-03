@@ -1,0 +1,78 @@
+*, html {
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.wrapper{
+    background-color: rgb(51, 51, 51);
+    padding-top: 70px;
+}
+.background-image {
+    position: relative;
+    height: 140vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../assets/Dating-Tips/996148-cat-two-smartphone-white-background-animals-humor.jpg'); 
+    background-size: cover;
+    background-position: center;
+}
+
+.tips-container {
+    max-width: 400px; 
+    padding: 20px;
+    border-radius: 30px; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); 
+    background-color: rgba(255, 255, 255, 0.9); 
+    position: absolute;
+    left: 50px; 
+    top: 50%; 
+    transform: translateY(-50%);
+}
+
+
+.phone-bezel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 20px solid #000; 
+    border-radius: 30px; 
+    z-index: -1; 
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.chat {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    border-radius: 20px;
+}
+
+.tip-number {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.received {
+    background-color: #f0f0f0;
+    text-align: left;
+}
+
+.sent {
+    background-color: #DCF8C6;
+    text-align: right;
+}

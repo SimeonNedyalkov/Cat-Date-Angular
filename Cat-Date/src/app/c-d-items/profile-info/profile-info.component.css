@@ -44,3 +44,30 @@ p {
     border-bottom: 3px solid #9a9999; 
     margin-bottom: 20px; 
 }
+.matches{
+    font-size: 24px;
+    padding-bottom: 10px;
+}
+li{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+ul{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+.details a{
+    text-decoration: none;
+    color: #555;
+}
+.new-match{
+    padding-bottom: 10px;
+}

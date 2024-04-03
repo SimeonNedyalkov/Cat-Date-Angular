@@ -44,7 +44,7 @@
   }
   
   .form-container {
-    background-color: white; /* Red background color */
+    background-color: white; 
     padding:20px;
     border-radius: 8px;
   }
@@ -83,9 +83,9 @@
   }
   .form-container input[type="text"]::placeholder,
   .form-container input[type="password"]::placeholder {
-    color: #b3b2b2; /* Change the placeholder text color */
-    font-style: italic; /* Add italic style to the placeholder text */
-    font-size: 12px; /* Change the font size of the placeholder text */
+    color: #b3b2b2; 
+    font-style: italic; 
+    font-size: 12px; 
   }
 
   /* validation */

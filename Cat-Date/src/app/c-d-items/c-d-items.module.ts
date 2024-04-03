@@ -3,9 +3,12 @@ import { CommonModule } from '@angular/common';
 import { CatDateAppComponent } from './cat-date-app/cat-date-app.component';
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
 import { CDInterfaceComponent } from './c-d-interface/c-d-interface.component';
-import { SwipeableDirective } from './swipable-directive.directive';
 import { CatCardsComponent } from './cat-cards/cat-cards.component';
-import { CatMatchDirectiveDirective } from './cat-match-directive.directive';
+import { CatRoutingModule } from './catRouting.routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CatProfileComponent } from './cat-profile/cat-profile.component';
+import { CheckCatComponent } from './check-cat/check-cat.component';
+import { AddClassDirective } from './add-class.directive';
 
 
 
@@ -15,11 +18,14 @@ import { CatMatchDirectiveDirective } from './cat-match-directive.directive';
     ProfileInfoComponent,
     CatCardsComponent,
     CDInterfaceComponent,
-    SwipeableDirective,
-    CatMatchDirectiveDirective
+    CatProfileComponent,
+    CheckCatComponent,
+    AddClassDirective
   ],
   imports: [
     CommonModule,
+    CatRoutingModule,
+    ReactiveFormsModule
   ],
   exports:[CatDateAppComponent,ProfileInfoComponent,CatCardsComponent,CDInterfaceComponent]
 })

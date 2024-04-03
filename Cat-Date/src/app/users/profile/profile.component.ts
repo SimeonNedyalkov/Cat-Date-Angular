@@ -17,10 +17,11 @@ export class ProfileComponent implements OnInit {
   email1: string = '';
   phone1: string = '';
   img: string | null = null
-  liked:string[]=[]
+  matches:string[]=[]
   cat:any
   myCat : any
   doYouHaveACat:boolean = false
+  catSwipeIndex : number = 0
   constructor(private authService: UserService, private fb: FormBuilder, public dataService: DataService,private http:HttpClient) {}
 
   profileForm = this.fb.group({
@@ -39,13 +40,11 @@ export class ProfileComponent implements OnInit {
     this.isCatAddedChecker()
     this.getMyCat().subscribe(res=>{
       if(res != undefined){
-        console.log('My Cat :',res)
         this.myCat=res
         this.doYouHaveACat = true
       }
       else{
         this.doYouHaveACat = false
-        console.log('You dont have a cat')
       }
     },err=>{
       console.log('You dont have a cat',err)
@@ -59,7 +58,7 @@ export class ProfileComponent implements OnInit {
   let { name, img, eyesColor, furColor, weight } = this.profileForm.value;
   img = img?.split('\\').pop() ?? null;
   img = '/assets/cat-images/' + img;
-  this.dataService.createACat(name!, img!, eyesColor!, furColor!, weight!,this.liked)
+  this.dataService.createACat(name!, img!, eyesColor!, furColor!, weight!,this.matches,this.catSwipeIndex)
     .subscribe((res) => {
       this.cat = res
       this.dataService.isCatAdded = !this.dataService.isCatAdded;
@@ -83,7 +82,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getMyCat(): Observable<CatType> {
-    const user_id = this.authService.user?._id; // Get the current user's id
+    const user_id = this.authService.user?._id; 
     return this.dataService.getAllCats().pipe(
       map((cats: any[]) => {
         return cats.find(cat => cat._ownerId === user_id);

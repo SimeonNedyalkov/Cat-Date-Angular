@@ -15,6 +15,8 @@ import { UserRoutingModule } from './users/users.routing.module';
 import { AboutComponent } from './about/about.component';
 import { SharedModule } from './shared/shared.module';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
+import { CatRoutingModule } from './c-d-items/catRouting.routing.module';
+import { TipsComponent } from './tips/tips.component';
 
 
 
@@ -26,6 +28,7 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
     ComingSoonComponent,
     AboutComponent,
     AuthenticateComponent,
+    TipsComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +39,7 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
     FormsModule,
     HttpClientModule,
     UserRoutingModule,
+    CatRoutingModule,
     AppRoutingModule,
   ],
   providers: [],

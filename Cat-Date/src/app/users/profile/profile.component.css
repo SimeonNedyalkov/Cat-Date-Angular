@@ -5,7 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 .fullscreen-image{
     position: relative;
-    height: 100vh;
+    height: 120vh;
     width: 100%;
     background-image: url('../../../assets/profile-image/images-3.webp'); /* Path to your fullscreen image */
     background-size: cover;
@@ -17,8 +17,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 400px; /* Increase width to accommodate the form */
-  max-width: 90%; /* Limit the maximum width to prevent overflow */
+  width: 400px; 
+  max-width: 90%; 
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -32,21 +32,21 @@
 
 /* Adjusting alignment */
 .info-item {
-  margin-bottom: 15px; /* Increase bottom margin for better separation */
-  width: 100%; /* Make items fill the width */
+  margin-bottom: 15px; 
+  width: 100%; 
 }
 
 label {
-  min-width: 120px; /* Adjust minimum width for labels */
-  display: inline-block; /* Make labels behave like blocks to enable width */
+  min-width: 120px; 
+  display: inline-block; 
 }
 
 .profile-info {
   margin-bottom: 20px;
-  flex: 1; /* Expand to fill available space */
+  flex: 1; 
   display: flex;
   flex-direction: column;
-  justify-content: space-around; /* Spread items evenly */
+  justify-content: space-around; 
 }
 
 
@@ -87,11 +87,11 @@ input[type="eyesColor"],
 input[type="furColor"],
 input[type="weight"],
 input[type="file"] {
-  width: 100%; /* Make inputs fill the available space */
-  padding: 8px; /* Add some padding for better visual */
-  border: 1px solid #ccc; /* Add border */
-  border-radius: 4px; /* Add border radius */
-  box-sizing: border-box; /* Ensure padding and border are included in the width */
+  width: 100%; 
+  padding: 8px; 
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  box-sizing: border-box; 
 }
 
 /* CSS for error messages */
@@ -102,20 +102,20 @@ input[type="file"] {
 
 /* Adjusting alignment */
 .info-item {
-  margin-bottom: 15px; /* Increase bottom margin for better separation */
+  margin-bottom: 15px; 
 }
 
 label {
-  min-width: 100px; /* Ensure labels have a minimum width for alignment */
-  display: inline-block; /* Make labels behave like blocks to enable width */
+  min-width: 100px; 
+  display: inline-block; 
 }
 
 .buttons {
-  margin-top: 20px; /* Add some space between inputs and buttons */
+  margin-top: 20px; 
 }
 
 .buttons button {
-  width: 120px; /* Set a fixed width for buttons */
+  width: 120px; 
 }
 .DoYouWish{
   margin-top: 20px;

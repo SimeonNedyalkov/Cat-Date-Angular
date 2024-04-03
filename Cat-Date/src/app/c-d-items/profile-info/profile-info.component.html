@@ -1,11 +1,52 @@
-<div class="profile-info">
+<!-- user view -->
+
+<div *ngIf="myCat == undefined" class="profile-info">
     <div class="avatar">
         <img src="../../../assets/avatars/cool-avatar-transparent-image-cool-boy-avatar-11562893383qsirclznyw.png" alt="Profile Picture">
     </div>
     <div class="details">
-        <h2>{{getUserName()}}</h2>
+        <h2>{{ getUserName() }}</h2>
     </div>
     <div class="line"></div> 
     <div class="matches">Matches:</div>
     
 </div>
+
+<!-- if cat view -->
+<div *ngIf="myCat != undefined" class="profile-info">
+    <div class="avatar">
+        <img routerLink="/cat-profile" src={{myCat.img}} alt="Profile Picture">
+    </div>
+    <div class="details">
+        <h2><a routerLink="/cat-profile">{{myCat.name}}</a></h2>
+    </div>
+    <div class="line"></div> 
+    <div class="matches">Matches:</div>
+
+    <ul *ngIf="catLikeService.isMatchFound">
+        <li class="new-match"> New Match </li>
+        <div class="avatar likedCat">
+            <img [src]="catLikeService.currentCat?.img" alt="Cat Image" class="cat-img">
+          </div>
+          <div class="details">
+            <h2>{{ catLikeService.currentCat?.name }}</h2>
+        </div>
+    </ul>
+
+    <ul *ngIf="!catLikeService.isMatchFound">
+      
+        <li *ngFor="let matchId of myCat.matches">
+            <ng-container *ngIf="likedCats">
+              <div *ngFor="let cat of likedCats">
+              <div class="avatar likedCat">
+                <img [src]="cat?.img" alt="Cat Image" class="cat-img">
+              </div>
+              <div class="details">
+                <h2>{{ cat?.name }}</h2>
+              </div>
+            </div>
+            </ng-container>
+        </li>
+      
+      </ul>
+    
