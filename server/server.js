@@ -1339,56 +1339,35 @@
     	}
     };
     var seedData = {
-    	recipes: {
+    	cats: {
     		"3987279d-0ad4-4afb-8ca9-5b256ae3b298": {
     			_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-    			name: "Easy Lasagna",
-    			img: "assets/lasagna.jpg",
-    			ingredients: [
-    				"1 tbsp Ingredient 1",
-    				"2 cups Ingredient 2",
-    				"500 g  Ingredient 3",
-    				"25 g Ingredient 4"
-    			],
-    			steps: [
-    				"Prepare ingredients",
-    				"Mix ingredients",
-    				"Cook until done"
-    			],
+    			name: "Buttercup",
+    			img: "/assets/cat-images/cat-5620519__480.jpg",
+    			eyesColor:"blue",
+    			furColor:"gray",
+                weight:"3",
+                matches: [],
     			_createdOn: 1613551279012
     		},
     		"8f414b4f-ab39-4d36-bedb-2ad69da9c830": {
     			_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-    			name: "Grilled Duck Fillet",
-    			img: "assets/roast.jpg",
-    			ingredients: [
-    				"500 g  Ingredient 1",
-    				"3 tbsp Ingredient 2",
-    				"2 cups Ingredient 3"
-    			],
-    			steps: [
-    				"Prepare ingredients",
-    				"Mix ingredients",
-    				"Cook until done"
-    			],
+    			name: "Heinrich",
+    			img: "/assets/cat-images/cat-5622217__480.jpg",
+    			eyesColor:"green",
+    			furColor:"Black and white",
+                weight:"8",
+                matches: [],
     			_createdOn: 1613551344360
     		},
     		"985d9eab-ad2e-4622-a5c8-116261fb1fd2": {
     			_ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-    			name: "Roast Trout",
-    			img: "assets/fish.jpg",
-    			ingredients: [
-    				"4 cups Ingredient 1",
-    				"1 tbsp Ingredient 2",
-    				"1 tbsp Ingredient 3",
-    				"750 g  Ingredient 4",
-    				"25 g Ingredient 5"
-    			],
-    			steps: [
-    				"Prepare ingredients",
-    				"Mix ingredients",
-    				"Cook until done"
-    			],
+    			name: "Ivcho",
+    			img: "/assets/cat-images/black-and-white-cat-px.jpg",
+    			eyesColor:"yellow",
+    			furColor:"Black and White",
+                weight:"4",
+                matches: [],
     			_createdOn: 1613551388703
     		}
     	},
@@ -1401,6 +1380,7 @@
     			_id: "0a272c58-b7ea-4e09-a000-7ec988248f66"
     		}
     	},
+    
     	records: {
     		i01: {
     			name: "John1",
@@ -1508,6 +1488,10 @@
     		}
     	},
     	likes: {
+            "847ec027-f659-4086-8032-5173e2f9c93a":{
+                likerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+                likedId: "35c62d76-8152-4626-8712-eeb96381bea8",
+            }
     	},
     	ideas: {
     		"833e0e57-71dc-42c0-b387-0ce0caf5225e": {
